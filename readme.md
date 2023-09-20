@@ -4,8 +4,8 @@
 3. Select gender (radio button).
 4. Select years of experience (radio button).
 5. Enter date.
-6. Select Profession (Checkbox).
+6. Select Profession (checkbox).
 7. Select Automation tools you are familiar with (multiple checkboxes).
-8. Select Continent (Select box).
+8. Select Continent (select box).
 9. Select multiple commands from a multi-select box.
 10. Click on Submit button.
