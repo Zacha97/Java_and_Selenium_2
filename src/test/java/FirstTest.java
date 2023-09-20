@@ -1,3 +1,4 @@
+import org.junit.AfterClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,6 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.security.Key;
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -26,10 +26,11 @@ public class FirstTest {
         driver = new ChromeDriver();
     }
 
-  /*  @AfterEach
-    public void driverQuit(){
+    @AfterEach
+    public void driverClose() {
         driver.close();
-     */
+    }
+
     @Test
     public void firstMethod() throws InterruptedException{
 
@@ -41,7 +42,7 @@ public class FirstTest {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        driver.navigate().back();
+        driver.navigate().back(); //ad is appearing so when going back it's disappearing
         driver.findElement(By.name("firstname")).sendKeys("Stefan");
         driver.findElement(By.name("lastname")).sendKeys("Sztacheta");
         driver.findElement(By.id("sex-0")).click();
@@ -49,17 +50,17 @@ public class FirstTest {
         driver.findElement(By.id("datepicker")).sendKeys("12-05-2023");
 
         WebElement ele = driver.findElement(By.id("profession-1"));
-        JavascriptExecutor jse = (JavascriptExecutor)driver; // { using those JavascriptExecutor due to error appearing with interrupting
+        JavascriptExecutor jse = (JavascriptExecutor)driver; // { using those JavascriptExecutor due to error appearing with 'element click intercepted'
         jse.executeScript("arguments[0].click()", ele);
 
         // multiple checkboxes
-        // 1st
+        // 1st checkbox
         WebElement dre = driver.findElement(By.id("tool-2"));
-        JavascriptExecutor asb = (JavascriptExecutor)driver; // { using those JavascriptExecutor due to error appearing with interrupting
+        JavascriptExecutor asb = (JavascriptExecutor)driver; // { using those JavascriptExecutor due to error appearing with 'element click intercepted'
         asb.executeScript("arguments[0].click()", dre);
-        // 2nd
+        // 2nd checkbox
         WebElement dre2 = driver.findElement(By.id("tool-1")); // {
-        JavascriptExecutor asb2 = (JavascriptExecutor)driver; // { using those JavascriptExecutor due to error appearing with interrupting
+        JavascriptExecutor asb2 = (JavascriptExecutor)driver; // { using those JavascriptExecutor due to error appearing with 'element click intercepted'
         asb2.executeScript("arguments[0].click()", dre2); // {
 
         //select continents from the dropdown menu
@@ -80,7 +81,11 @@ public class FirstTest {
         WebElement uploadFile = driver.findElement(By.xpath("//input[@id='photo']"));
         uploadFile.sendKeys("C:\\Users\\zgred\\OneDrive\\Pulpit\\asd.jpg");
 
-        WebElement submitButton = driver.findElement(By.id("submit"));
-        submitButton.click();
+        //submit button
+        WebElement dre3 = driver.findElement(By.id("submit")); // {
+        JavascriptExecutor asb3 = (JavascriptExecutor)driver; // { using those JavascriptExecutor due to error appearing with 'element click intercepted'
+        asb3.executeScript("arguments[0].click()", dre3); // {
+        System.out.println("Passed");
+
     }
 }
